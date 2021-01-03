@@ -73,7 +73,12 @@ export default {
     Default Gateway. . . . . . . : 192.168.1.1`;
       } else if(value.trim() === "pwd"){
         this.send_to_terminal = '/Users/Giannin'
-      } else {
+      } else if(value.includes("ls")){
+        this.send_to_terminal = 'Empty directory'
+      } else if(value.includes("cd")){
+        this.send_to_terminal = 'No such file or directory'
+      }
+      else {
         this.send_to_terminal = `'${value}' is not recognized as an internal or external command, an executable program or a batch file. Type "help" for a list of commands`;
       }
     }
