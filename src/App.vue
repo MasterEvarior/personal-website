@@ -41,7 +41,7 @@ export default {
           name: "contact",
           get() {
             return "GitHub: https://github.com/MasterEvarior\n" +
-                   "Email: mailto:contact@giannin.dev"
+                   "Email: contact@giannin.dev"
           }
         },
         {
