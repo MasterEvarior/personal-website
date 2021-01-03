@@ -1,4 +1,12 @@
-# personal-website
+# Personal Website
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/MasterEvarior/personal-website/Deploy%20to%20github%20pages)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/MasterEvarior/personal-website)  
+A small, personal website in the style of a terminal.
+
+## Used technologies
+ - [Vue.js](https://vuejs.org)
+ - [vue-shell](https://github.com/HalasProject/vue-shell)
+ - GitHub-Actions(for automating the deployment)
 
 ## Project setup
 ```
