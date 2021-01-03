@@ -9,7 +9,9 @@
     "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
+    "chalk": "^4.1.0",
     "core-js": "^3.6.5",
+    "execa": "^5.0.0",
     "node-emoji": "^1.10.0",
     "vue": "^2.6.11",
     "vue-shell": "^1.0.3"
