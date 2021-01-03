@@ -31,18 +31,30 @@ export default {
       commands: [
         {
           name: "about",
-          desc: "uwu",
-          get(){
+          get() {
             return "Hi, I'm Giannin.\n" +
             "I'm a developer in the small country of Switzerland🇨🇭 and do most of my work in a Java☕️ environment. Though I also enjoy working with other technologies💾 such as Vue.js, Docker and more."
           }
         },
         {
           name: "contact",
-          desc: "",
           get() {
             return "GitHub: https://github.com/MasterEvarior\n" +
                    "Email: mailto:contact@giannin.dev"
+          }
+        },
+        {
+          name: "github",
+          get() {
+            window.open("https://github.com/MasterEvarior", '_blank');
+            return "Trying to open new tab... ⏳";
+          }
+        },
+        {
+          name: "write-email",
+          get() {
+            window.open("mailto:contact@giannin.dev");
+            return "Trying to open mail programm... ⏳";
           }
         }
       ]
@@ -69,4 +81,14 @@ export default {
 </script>
 
 <style>
+ .wordwrap{
+  /* wrap long text and urls */
+  white-space: pre; /* CSS 2.0 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  white-space: pre-line; /* CSS 3.0 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: -moz-pre-wrap; /* Mozilla */
+  word-wrap: break-word; /* IE 5+ */
+  } 
 </style>
