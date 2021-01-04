@@ -30,7 +30,7 @@ export default {
       },
       commands: [
         {
-          name: "about",
+          name: "about-me",
           get() {
             return "Hi, I'm Giannin.\n" +
             "I'm a developer in the small country of Switzerland🇨🇭 and do most of my work in a Java☕️ environment.\n" + 
@@ -38,7 +38,7 @@ export default {
           }
         },
         {
-          name: "contact",
+          name: "contact-info",
           get() {
             return "GitHub: https://github.com/MasterEvarior\n" +
                    "Email: contact@giannin.dev"
