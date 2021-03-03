@@ -73,12 +73,17 @@ export default {
     Default Gateway. . . . . . . : 192.168.1.1`;
       } else if(value.trim() === "pwd"){
         this.send_to_terminal = '/Users/Giannin'
+      } else if(value.includes("hack")){
+          this.banner.sign = "hackerman$";
+          this.banner.header = "Oh no! You've hacked me ☠️";
+          this.banner.subHeader = "Welc̴ome͏ to͞ my̴ ͘w͏ebsite,̡ eńj̵oy ýour ́stay̸ ͠�̶�̴";
+          this.banner.helpHeader = "R̕el̨ǫad̸ ͡t̷h̶e̛ ̢s͘ite ̀to ̕'ưnhac̢k̨' i̧t";
+          this.banner.img.link = 'images/hacked.gif';
       } else if(value.includes("ls")){
         this.send_to_terminal = 'Empty directory'
       } else if(value.includes("cd")){
         this.send_to_terminal = 'No such file or directory'
-      }
-      else {
+      } else {
         this.send_to_terminal = `'${value}' is not recognized as an internal or external command, an executable program or a batch file. Type "help" for a list of commands`;
       }
     }
