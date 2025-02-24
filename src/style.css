@@ -1,15 +1,42 @@
+:root {
+  --background-color: black;
+  --font-color: white;
+}
+
 body {
-  color: white;
-  background-color: black;
+  color: var(--font-color);
+  background-color: var(--background-color);
   display: grid;
   height: 100vh;
+
+  padding: 10px;
+
   margin: 0;
-  grid-template-rows: 20% 1fr 10%;
+  grid-template-rows: 10% 1fr 10%;
   font-family: "Jetbrains Mono";
+  font-size: 1.2vh;
 }
 
 header {
-  padding: 0 0 0 0;
+  align-content: center;
+  h1 {
+    font-size: 3vh;
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 1.5vh;
+    margin-top: 0;
+  }
+}
+
+a {
+  font-weight: bold;
+  text-decoration: underline;
+  color: var(--font-color);
+}
+
+footer {
+  margin: auto;
 }
 
 header,
