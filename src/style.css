@@ -3,22 +3,34 @@
   --font-color: white;
 }
 
+@font-face {
+  font-display: swap;
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  src: url("assets/fonts/jetbrains-mono-v20-latin_latin-ext-500.woff2")
+    format("woff2");
+}
+
 body {
   color: var(--font-color);
   background-color: var(--background-color);
-  display: grid;
+
   height: 100vh;
-
-  padding: 10px;
-
+  padding: 0.1em 1em;
   margin: 0;
+
+  display: grid;
   grid-template-rows: 10% 1fr 10%;
+
   font-family: "Jetbrains Mono";
   font-size: 1.2vh;
 }
 
 header {
   align-content: center;
+  grid-template-columns: 20% 1fr;
+
   h1 {
     font-size: 3vh;
     margin-bottom: 0;
@@ -29,6 +41,10 @@ header {
   }
 }
 
+#prompt {
+  font-weight: bold;
+}
+
 a {
   font-weight: bold;
   text-decoration: underline;
@@ -37,10 +53,4 @@ a {
 
 footer {
   margin: auto;
-}
-
-header,
-main,
-footer {
-  border: 1pt solid red;
 }
