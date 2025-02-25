@@ -51,6 +51,20 @@ a {
   color: var(--font-color);
 }
 
+input {
+  background: none;
+  outline: none;
+  border: none;
+
+  font-family: "Jetbrains Mono";
+  font-size: 1em;
+  color: var(--font-color);
+}
+
+input:focus {
+  outline-width: 0;
+}
+
 footer {
   margin: auto;
 }
