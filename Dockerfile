@@ -1,14 +1,11 @@
 FROM node:22 AS builder
 
-WORKDIR /
+WORKDIR /app
 
 COPY src/* /app/src
 
 RUN npm install -g minify
-RUN minify --all /app/src/* --output /app/dist --recursive -sync
-
-CMD ["minify", "--all", "/app/src/*", "--output",  "/app/dist", "--recursive",  "-sync"]
-#CMD ["ls", "/app"]
+RUN minify --all /app/src/* --output /app/dist --recursive --sync
 
 # FROM nginx:alpine
 
