@@ -1,8 +1,21 @@
 name: Test
-on: [push]
+on:
+  push:
+  workflow_call:
 jobs:
   test:
+    name: E2E Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chrome, firefox, edge]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: docker build -t website .
+          start: docker run -d -p 8080:80 website:latest
+          wait-on: 'http://localhost:8080'
+          browser: ${{ matrix.browser }}

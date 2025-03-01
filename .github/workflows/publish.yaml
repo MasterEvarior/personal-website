@@ -4,8 +4,11 @@ on:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+.[a-fA-F0-9][a-fA-F0-9][a-fA-F0-9][a-fA-F0-9][a-fA-F0-9][a-fA-F0-9][a-fA-F0-9]'
 jobs:
+  test:
+    uses: ./.github/workflows/test.yaml
   deploy:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
