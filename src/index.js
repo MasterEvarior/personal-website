@@ -1,8 +1,25 @@
+/**
+ * @typedef {Object} Command
+ * @property {Array<string>} names - The different aliases for the command. At least one needs to be provided.
+ * @property {boolean} isDefault - If true, the command is the default fallback.
+ * @property {string} description - A brief description of what the command does.
+ * @property {Function} output - A function that returns the HTML output for the command.
+ */
+
+/**
+ * List of available commands for the terminal interface.
+ * @constant {Array<Command>} availableCommands
+ */
 const availableCommands = [
   {
     names: ["help"],
     isDefault: false,
     description: "Show help information",
+    /**
+     * Generates the help output listing all available commands.
+     * @param {string} _ - Unused parameter.
+     * @returns {string} - HTML formatted help information listing all commands and their descriptions.
+     */
     output: (_) => {
       return `
         <p>
@@ -22,6 +39,11 @@ const availableCommands = [
     names: ["about", "about-me"],
     isDefault: false,
     description: "Show some information about me",
+    /**
+     * Provides an introduction about the user, including their location, field of work, and interests.
+     * @param {string} _ - Unused parameter.
+     * @returns {string} - HTML formatted about information.
+     */
     output: (_) => {
       return `
         <p>Hi, I'm Giannin</p>
@@ -39,6 +61,11 @@ const availableCommands = [
     names: ["skills", "show-skills"],
     isDefault: false,
     description: "Show what my skills are",
+    /**
+     * Displays the user's skills in programming, web development, tools, cloud, and DevOps.
+     * @param {string} _ - Unused parameter.
+     * @returns {string} - HTML formatted list of skills categorized into different areas.
+     */
     output: (_) => {
       return `
         <h3>Programming Languages</h3>
@@ -80,6 +107,11 @@ const availableCommands = [
     names: ["contact", "contact-info"],
     isDefault: false,
     description: "Show how you can contact me",
+    /**
+     * Displays contact information, including email and GitHub profile.
+     * @param {string} _ - Unused parameter.
+     * @returns {string} - HTML formatted contact details with clickable links.
+     */
     output: (_) => {
       return `
         <p>Feel free to contact me through these channels:</p>
@@ -98,11 +130,21 @@ const availableCommands = [
     names: ["clear"],
     isDefault: false,
     description: "Clear the output area",
+    /**
+     * Clears the output area by returning an empty string.
+     * @param {string} _ - Unused parameter.
+     * @returns {string} - Empty string to clear output.
+     */
     output: (_) => "",
   },
   {
     names: ["not-valid"],
     isDefault: true,
+    /**
+     * Handles invalid commands by displaying an error message.
+     * @param {string} input - The user input that was not recognized.
+     * @returns {string} - Error message indicating invalid command.
+     */
     output: (input) => {
       return `
         <p>"${input}" is not a valid command. Enter "help" for assistance.</p>
@@ -111,14 +153,29 @@ const availableCommands = [
   },
 ];
 
+/**
+ * Retrieves the default command from the list of commands.
+ * @param {Array<Command>} commands - List of command objects.
+ * @returns {Command} - The default command object.
+ */
 const getDefaultCommand = (commands) => {
   return commands.filter((c) => c.isDefault)[0];
 };
 
+/**
+ * Sets the output area content.
+ * @param {string} html - The HTML content to display.
+ */
 const setOutput = (html) => {
   document.getElementById("output").innerHTML = html;
 };
 
+/**
+ * Executes a command based on user input.
+ * Searches for a matching command by name, otherwise falls back to the default command.
+ * @param {string} input - The command input by the user.
+ * @param {Array<Command>} commands - The list of available commands.
+ */
 const executeCommand = (input, commands) => {
   console.log(getDefaultCommand(commands).output(input));
   console.log(commands.find((c) => c.names.includes(input)) ?? "test ");
@@ -128,6 +185,10 @@ const executeCommand = (input, commands) => {
   setOutput(command.output(input));
 };
 
+/**
+ * Initializes the command input listener and sets up event handling.
+ * Listens for the Enter key press to execute user input commands.
+ */
 export const setup = () => {
   const prompt = document.getElementById("input");
   prompt.addEventListener("keyup", (e) => {
