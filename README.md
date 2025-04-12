@@ -3,7 +3,7 @@ A small, personal website in the style of a terminal. Check it out [here](https:
 
 The goal of this current version was to write the website with no external dependencies and no build system like NPM. Thanks to this, the entire website is less than 7KiB big (excluding assets like the font).
 
-Test are run with Cypress, hence the `package.json` file. See [Testing](#testing) down below.
+Tests are run with Cypress, hence the `package.json` file. See [Testing](#testing) down below.
 
 ## Build
 Because there are no external dependencies and nothing to build, not build system is needed.
