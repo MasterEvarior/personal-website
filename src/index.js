@@ -45,16 +45,14 @@ export const availableCommands = [
      * Provides an introduction about the user, including their location, field of work, and interests.
      * @type {Action}
      */
-    output: (_) => `
-        <p>Hi, I'm Giannin</p>
+    output: (_) => `<p>Hi, I'm Giannin</p>
         <p>
           I'm a developer in the small country of Switzerland🇨🇭 and do most of my work with Java☕️ and Spring Boot🌿.
           Though I also enjoy working with other technologies such as Angular, Kubernetes, Nix and more.
         </p>
         <p>
           Currently I am pursuing a Bachelor's degree in Computer Science📚. In my free time I foster my passion for OSS and learn about everything-as-code🤖, much of which you can check out on my GitHub profile.
-        </p>
-      `,
+        </p>`,
   },
   {
     names: ["skills", "show-skills"],
@@ -94,9 +92,7 @@ export const availableCommands = [
           <img src="https://img.shields.io/badge/Jenkins-D24939?style=flat&logo=jenkins&logoColor=white"/>
           <img src="https://img.shields.io/badge/Flux%20CD-5468FF?style=flat&logo=flux&logoColor=white"/>
           <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat&logo=githubactions&logoColor=white"/>
-        </div>
-
-      `,
+        </div>`,
   },
   {
     names: ["contact", "contact-info"],
@@ -105,8 +101,7 @@ export const availableCommands = [
      * Displays contact information, including email and GitHub profile.
      * @type {Action}
      */
-    output: (_) => `
-        <p>Feel free to contact me through these channels:</p>
+    output: (_) => `<p>Feel free to contact me through these channels:</p>
         <ul>
           <li>
             Email: <a href="mailto:contact@giannin.ch">contact@giannin.ch</a>
@@ -114,8 +109,7 @@ export const availableCommands = [
           <li>
             GitHub: <a href="https://github.com/MasterEvarior">https://github.com/MasterEvarior</a>
           </li>
-        <ul>
-      `,
+        <ul>`,
   },
   {
     names: ["clear"],
