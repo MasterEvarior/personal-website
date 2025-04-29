@@ -1,51 +1,51 @@
 /**
  * @typedef {Object} Command
  * @property {Array<string>} names - The different aliases for the command. At least one needs to be provided.
- * @property {boolean} isDefault - If true, the command is the default fallback.
  * @property {string} description - A brief description of what the command does.
- * @property {Function} output - A function that returns the HTML output for the command.
+ * @property {Action} output - A function that returns the HTML output for the command.
+ */
+
+/**
+ * @typedef Action
+ * @pure
+ * @param {string} input - Text which the user entered
+ * @returns {string} - The output of the command
  */
 
 /**
  * List of available commands for the terminal interface.
+ * This list does not contain the default command.
  * @constant {Array<Command>} availableCommands
  */
-const availableCommands = [
+export const availableCommands = [
   {
     names: ["help"],
-    isDefault: false,
     description: "Show help information",
     /**
      * Generates the help output listing all available commands.
-     * @param {string} _ - Unused parameter.
-     * @returns {string} - HTML formatted help information listing all commands and their descriptions.
+     * @type {Action}
      */
-    output: (_) => {
-      return `
+    output: (_) =>
+      `
         <p>
             Enter any of the following commands and press &lt;enter&gt;:
             <ul>
               ${availableCommands
-                .filter((c) => !c.isDefault)
                 .map(
                   (c) => "<li>" + c.names[0] + ": " + c.description + "</li>"
                 )
                 .join(" ")}
             </ul>
-      `;
-    },
+      `,
   },
   {
     names: ["about", "about-me"],
-    isDefault: false,
     description: "Show some information about me",
     /**
      * Provides an introduction about the user, including their location, field of work, and interests.
-     * @param {string} _ - Unused parameter.
-     * @returns {string} - HTML formatted about information.
+     * @type {Action}
      */
-    output: (_) => {
-      return `
+    output: (_) => `
         <p>Hi, I'm Giannin</p>
         <p>
           I'm a developer in the small country of Switzerland🇨🇭 and do most of my work with Java☕️ and Spring Boot🌿.
@@ -54,20 +54,16 @@ const availableCommands = [
         <p>
           Currently I am pursuing a Bachelor's degree in Computer Science📚. In my free time I foster my passion for OSS and learn about everything-as-code🤖, much of which you can check out on my GitHub profile.
         </p>
-      `;
-    },
+      `,
   },
   {
     names: ["skills", "show-skills"],
-    isDefault: false,
     description: "Show what my skills are",
     /**
      * Displays the user's skills in programming, web development, tools, cloud, and DevOps.
-     * @param {string} _ - Unused parameter.
-     * @returns {string} - HTML formatted list of skills categorized into different areas.
+     * @type {Action}
      */
-    output: (_) => {
-      return `
+    output: (_) => `
         <h3>Programming Languages</h3>
         <p align="left">
           <img src="https://img.shields.io/badge/Java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white"/>
@@ -100,20 +96,16 @@ const availableCommands = [
           <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat&logo=githubactions&logoColor=white"/>
         </div>
 
-      `;
-    },
+      `,
   },
   {
     names: ["contact", "contact-info"],
-    isDefault: false,
     description: "Show how you can contact me",
     /**
      * Displays contact information, including email and GitHub profile.
-     * @param {string} _ - Unused parameter.
-     * @returns {string} - HTML formatted contact details with clickable links.
+     * @type {Action}
      */
-    output: (_) => {
-      return `
+    output: (_) => `
         <p>Feel free to contact me through these channels:</p>
         <ul>
           <li>
@@ -123,33 +115,16 @@ const availableCommands = [
             GitHub: <a href="https://github.com/MasterEvarior">https://github.com/MasterEvarior</a>
           </li>
         <ul>
-      `;
-    },
+      `,
   },
   {
     names: ["clear"],
-    isDefault: false,
     description: "Clear the output area",
     /**
      * Clears the output area by returning an empty string.
-     * @param {string} _ - Unused parameter.
-     * @returns {string} - Empty string to clear output.
+     * @type {Action}
      */
     output: (_) => "",
-  },
-  {
-    names: ["not-valid"],
-    isDefault: true,
-    /**
-     * Handles invalid commands by displaying an error message.
-     * @param {string} input - The user input that was not recognized.
-     * @returns {string} - Error message indicating invalid command.
-     */
-    output: (input) => {
-      return `
-        <p>"${input}" is not a valid command. Enter "help" for assistance.</p>
-      `;
-    },
   },
 ];
 
@@ -158,15 +133,24 @@ const availableCommands = [
  * @param {Array<Command>} commands - List of command objects.
  * @returns {Command} - The default command object.
  */
-const getDefaultCommand = (commands) => {
-  return commands.filter((c) => c.isDefault)[0];
+export const getDefaultCommand = (commands) => {
+  return {
+    names: ["not-valid"],
+    /**
+     * Handles invalid commands by displaying an error message.
+     * @type {Action}
+     */
+    output: (input) => `
+        <p>"${input}" is not a valid command. Enter "help" for assistance.</p>
+      `,
+  };
 };
 
 /**
  * Sets the output area content.
  * @param {string} html - The HTML content to display.
  */
-const setOutput = (html) => {
+export const setOutput = (html) => {
   document.getElementById("output").innerHTML = html;
 };
 
@@ -176,9 +160,7 @@ const setOutput = (html) => {
  * @param {string} input - The command input by the user.
  * @param {Array<Command>} commands - The list of available commands.
  */
-const executeCommand = (input, commands) => {
-  console.log(getDefaultCommand(commands).output(input));
-  console.log(commands.find((c) => c.names.includes(input)) ?? "test ");
+export const executeCommand = (input, commands) => {
   const command =
     commands.find((c) => c.names.includes(input)) ??
     getDefaultCommand(commands);
