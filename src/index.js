@@ -130,19 +130,17 @@ export const availableCommands = [
 
 /**
  * Retrieves the default command from the list of commands.
- * @param {Array<Command>} commands - List of command objects.
  * @returns {Command} - The default command object.
  */
-export const getDefaultCommand = (commands) => {
+export const getDefaultCommand = () => {
   return {
     names: ["not-valid"],
     /**
      * Handles invalid commands by displaying an error message.
      * @type {Action}
      */
-    output: (input) => `
-        <p>"${input}" is not a valid command. Enter "help" for assistance.</p>
-      `,
+    output: (input) =>
+      `<p>"${input}" is not a valid command. Enter "help" for assistance.</p>`,
   };
 };
 
@@ -159,12 +157,13 @@ export const setOutput = (html) => {
  * Searches for a matching command by name, otherwise falls back to the default command.
  * @param {string} input - The command input by the user.
  * @param {Array<Command>} commands - The list of available commands.
+ * @returns {string} - The output of the command
  */
 export const executeCommand = (input, commands) => {
   const command =
     commands.find((c) => c.names.includes(input)) ??
     getDefaultCommand(commands);
-  setOutput(command.output(input));
+  return command.output(input);
 };
 
 /**
@@ -175,7 +174,8 @@ export const setup = () => {
   const prompt = document.getElementById("input");
   prompt.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
-      executeCommand(prompt.value, availableCommands);
+      const result = executeCommand(prompt.value, availableCommands);
+      setOutput(result);
       prompt.value = "";
     }
   });

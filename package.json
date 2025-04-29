@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "pretest": "docker build -t website . && docker run -d website",
-    "test": "cypress run"
-  },
-  "dependencies": {
-    "cypress": "^14.1.0"
-  }
-}
