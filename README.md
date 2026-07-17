@@ -6,7 +6,7 @@ The goal of this current version was to write the website with no external depen
 Tests are run with Node and some helper functions, all of which you can find int `./testing`.
 
 ## Build
-Because there are no external dependencies and nothing to build, not build system is needed.
+Because there are no external dependencies and nothing to build, no build system is needed.
 
 Simply move the `src` folder to your webserver of choice and see the magic happen.
 
